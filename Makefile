@@ -10,10 +10,10 @@ docker-down-all:
 docker-logs:
 	docker-compose logs --follow ;
 
+# Run jupyter lab.
+docker-jupyterlab:
+	docker-compose exec statapp_service sh -c "jupyter-lab --allow-root --ip=0.0.0.0"
+
 # Generate requirements.txt file without conda dependencies.
 pip-dependencies:
 	pip freeze | grep -v "@" > requirements.txt ;
-
-# Run jupyter lab.
-jupyterlab:
-	jupyter-lab --allow-root --ip=0.0.0.0

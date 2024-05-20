@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  flask_service:
+  statapp_service:
     image: statapp-image
     container_name: statapp-container
     hostname: statapp-host
