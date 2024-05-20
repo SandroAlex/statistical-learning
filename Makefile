@@ -8,5 +8,12 @@ docker-down-all:
 
 # See logs for all services.
 docker-logs:
-			docker-compose logs --follow ;
+	docker-compose logs --follow ;
 
+# Generate requirements.txt file without conda dependencies.
+pip-dependencies:
+	pip freeze | grep -v "@" > requirements.txt ;
+
+# Run jupyter lab.
+jupyterlab:
+	jupyter-lab --allow-root --ip=0.0.0.0
