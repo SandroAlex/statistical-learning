@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  flask_service:
+  statapp_service:
     image: statapp-image
     container_name: statapp-container
     hostname: statapp-host
@@ -14,4 +14,4 @@ services:
       - ./Makefile:/statapp/Makefile
       - ./islp:/statapp/islp
     ports:
-      - 8889:8888
+      - 8888:8888

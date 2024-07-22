@@ -14,6 +14,6 @@ docker-logs:
 pip-dependencies:
 	pip freeze | grep -v "@" > requirements.txt ;
 
-# Run jupyter lab.
-jupyterlab:
-	jupyter-lab --allow-root --ip=0.0.0.0
+# Run jupyterlab on statapp service.
+docker-exec-jupyterlab:
+	docker-compose exec statapp_service sh -c "jupyter-lab --allow-root --ip 0.0.0.0" ;
