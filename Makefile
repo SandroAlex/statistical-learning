@@ -2,6 +2,10 @@
 docker-build-all:
 	docker-compose up --build --detach ;
 
+# Up all services.
+docker-up-all:
+	docker-compose up --detach ;
+
 # Turn-off all services.
 docker-down-all:
 	docker-compose down --volumes ;
