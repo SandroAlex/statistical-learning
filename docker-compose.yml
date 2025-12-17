@@ -13,5 +13,6 @@ services:
     volumes:
       - ./Makefile:/statapp/Makefile
       - ./islp:/statapp/islp
+      - ./pyproject.toml:/statapp/pyproject.toml  # Mount project config
     ports:
       - 8888:8888

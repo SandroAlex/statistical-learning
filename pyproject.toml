@@ -1,0 +1,58 @@
+[project]
+name = "statistical-learning"
+version = "0.1.0"
+description = "Statistical Learning studies and implementations in Python"
+readme = "README.md"
+requires-python = "==3.10.12"
+authors = [
+    { name = "Alex Araujo", email = "alex.fate2000@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10.12",
+]
+
+dependencies = [
+    # Introduction to Statistical Learning in Python (ISLP) library
+    "ISLP==0.3.18",
+    # Managing the Machine Learning Lifecycle
+    "mlflow==2.9.2",
+    # Other tools
+    "natsort==8.4.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["islp*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
