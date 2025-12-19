@@ -3,10 +3,15 @@
 -e .
 alembic==1.17.2
     # via mlflow
+annotated-doc==0.0.4
+    # via fastapi
+annotated-types==0.7.0
+    # via pydantic
 anyio==4.12.0
     # via
     #   httpx
     #   jupyter-server
+    #   starlette
 appnope==0.1.4 ; sys_platform == 'darwin'
     # via ipykernel
 argon2-cffi==25.1.0
@@ -39,6 +44,11 @@ bleach==6.3.0
     # via nbconvert
 blinker==1.9.0
     # via flask
+cachetools==6.2.4
+    # via
+    #   google-auth
+    #   mlflow-skinny
+    #   mlflow-tracing
 certifi==2025.11.12
     # via
     #   httpcore
@@ -47,17 +57,18 @@ certifi==2025.11.12
 cffi==2.0.0
     # via
     #   argon2-cffi-bindings
+    #   cryptography
     #   pyzmq
 charset-normalizer==3.4.4
     # via requests
 click==8.3.1
     # via
     #   black
-    #   databricks-cli
     #   flask
-    #   mlflow
+    #   mlflow-skinny
+    #   uvicorn
 cloudpickle==3.1.2
-    # via mlflow
+    # via mlflow-skinny
 colorama==0.4.6 ; sys_platform == 'win32'
     # via
     #   click
@@ -71,10 +82,14 @@ contourpy==1.3.2
     # via matplotlib
 coverage==7.13.0
     # via pytest-cov
+cryptography==46.0.3
+    # via mlflow
 cycler==0.12.1
     # via matplotlib
-databricks-cli==0.18.0
-    # via mlflow
+databricks-sdk==0.76.0
+    # via
+    #   mlflow-skinny
+    #   mlflow-tracing
 debugpy==1.8.19
     # via ipykernel
 decorator==5.2.1
@@ -83,8 +98,6 @@ defusedxml==0.7.1
     # via nbconvert
 docker==6.1.3
     # via mlflow
-entrypoints==0.4
-    # via mlflow
 exceptiongroup==1.3.1
     # via
     #   anyio
@@ -92,11 +105,17 @@ exceptiongroup==1.3.1
     #   pytest
 executing==2.2.1
     # via stack-data
+fastapi==0.125.0
+    # via mlflow-skinny
 fastjsonschema==2.21.2
     # via nbformat
 flake8==7.3.0
     # via statistical-learning
 flask==3.1.2
+    # via
+    #   flask-cors
+    #   mlflow
+flask-cors==6.0.2
     # via mlflow
 fonttools==4.61.1
     # via matplotlib
@@ -107,17 +126,31 @@ fqdn==1.5.1
 gitdb==4.0.12
     # via gitpython
 gitpython==3.1.45
+    # via mlflow-skinny
+google-auth==2.45.0
+    # via databricks-sdk
+graphene==3.4.3
     # via mlflow
+graphql-core==3.2.7
+    # via
+    #   graphene
+    #   graphql-relay
+graphql-relay==3.2.0
+    # via graphene
 greenlet==3.3.0 ; platform_machine == 'AMD64' or platform_machine == 'WIN32' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'ppc64le' or platform_machine == 'win32' or platform_machine == 'x86_64'
     # via sqlalchemy
 gunicorn==21.2.0 ; sys_platform != 'win32'
     # via mlflow
 h11==0.16.0
-    # via httpcore
+    # via
+    #   httpcore
+    #   uvicorn
 httpcore==1.0.9
     # via httpx
 httpx==0.28.1
     # via jupyterlab
+huey==2.5.5
+    # via mlflow
 idna==3.11
     # via
     #   anyio
@@ -125,7 +158,9 @@ idna==3.11
     #   jsonschema
     #   requests
 importlib-metadata==7.2.1
-    # via mlflow
+    # via
+    #   mlflow-skinny
+    #   opentelemetry-api
 iniconfig==2.3.0
     # via pytest
 interface-meta==1.3.0
@@ -158,7 +193,6 @@ jinja2==3.1.6
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
-    #   mlflow
     #   nbconvert
 joblib==1.5.3
     # via
@@ -236,8 +270,6 @@ lxml==6.0.2
     # via islp
 mako==1.3.10
     # via alembic
-markdown==3.10
-    # via mlflow
 markupsafe==3.0.3
     # via
     #   flask
@@ -258,8 +290,12 @@ mccabe==0.7.0
     # via flake8
 mistune==3.1.4
     # via nbconvert
-mlflow==2.9.2
+mlflow==3.7.0
     # via statistical-learning
+mlflow-skinny==3.7.0
+    # via mlflow
+mlflow-tracing==3.7.0
+    # via mlflow
 mypy==1.19.1
     # via statistical-learning
 mypy-extensions==1.1.0
@@ -309,8 +345,22 @@ numpy==1.26.4
     #   scikit-learn
     #   scipy
     #   statsmodels
-oauthlib==3.3.1
-    # via databricks-cli
+opentelemetry-api==1.39.1
+    # via
+    #   mlflow-skinny
+    #   mlflow-tracing
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+opentelemetry-proto==1.39.1
+    # via
+    #   mlflow-skinny
+    #   mlflow-tracing
+opentelemetry-sdk==1.39.1
+    # via
+    #   mlflow-skinny
+    #   mlflow-tracing
+opentelemetry-semantic-conventions==0.60b1
+    # via opentelemetry-sdk
 overrides==7.7.0
     # via jupyter-server
 packaging==23.2
@@ -324,7 +374,8 @@ packaging==23.2
     #   jupyterlab
     #   jupyterlab-server
     #   matplotlib
-    #   mlflow
+    #   mlflow-skinny
+    #   mlflow-tracing
     #   nbconvert
     #   pytest
     #   statsmodels
@@ -365,8 +416,12 @@ prompt-toolkit==3.0.52
     # via
     #   ipython
     #   jupyter-console
-protobuf==4.25.8
-    # via mlflow
+protobuf==6.33.2
+    # via
+    #   databricks-sdk
+    #   mlflow-skinny
+    #   mlflow-tracing
+    #   opentelemetry-proto
 psutil==7.1.3
     # via ipykernel
 ptyprocess==0.7.0 ; os_name != 'nt' or (sys_platform != 'emscripten' and sys_platform != 'win32')
@@ -377,10 +432,23 @@ pure-eval==0.2.3
     # via stack-data
 pyarrow==14.0.2
     # via mlflow
+pyasn1==0.6.1
+    # via
+    #   pyasn1-modules
+    #   rsa
+pyasn1-modules==0.4.2
+    # via google-auth
 pycodestyle==2.14.0
     # via flake8
 pycparser==2.23 ; implementation_name != 'PyPy'
     # via cffi
+pydantic==2.12.5
+    # via
+    #   fastapi
+    #   mlflow-skinny
+    #   mlflow-tracing
+pydantic-core==2.41.5
+    # via pydantic
 pyflakes==3.4.0
     # via flake8
 pygam==0.11.0
@@ -391,8 +459,6 @@ pygments==2.19.2
     #   jupyter-console
     #   nbconvert
     #   pytest
-pyjwt==2.10.1
-    # via databricks-cli
 pyparsing==3.2.5
     # via matplotlib
 pytest==9.0.2
@@ -404,9 +470,12 @@ pytest-cov==7.0.0
 python-dateutil==2.9.0.post0
     # via
     #   arrow
+    #   graphene
     #   jupyter-client
     #   matplotlib
     #   pandas
+python-dotenv==1.2.1
+    # via mlflow-skinny
 python-json-logger==4.0.0
     # via jupyter-events
 python-utils==3.9.1
@@ -414,9 +483,7 @@ python-utils==3.9.1
 pytokens==0.3.0
     # via black
 pytz==2023.4
-    # via
-    #   mlflow
-    #   pandas
+    # via pandas
 pywin32==311 ; sys_platform == 'win32'
     # via docker
 pywinpty==3.0.2 ; os_name == 'nt'
@@ -427,15 +494,13 @@ pywinpty==3.0.2 ; os_name == 'nt'
 pyyaml==6.0.3
     # via
     #   jupyter-events
-    #   mlflow
+    #   mlflow-skinny
 pyzmq==27.1.0
     # via
     #   ipykernel
     #   jupyter-client
     #   jupyter-console
     #   jupyter-server
-querystring-parser==1.2.4
-    # via mlflow
 referencing==0.37.0
     # via
     #   jsonschema
@@ -443,10 +508,10 @@ referencing==0.37.0
     #   jupyter-events
 requests==2.32.5
     # via
-    #   databricks-cli
+    #   databricks-sdk
     #   docker
     #   jupyterlab-server
-    #   mlflow
+    #   mlflow-skinny
 rfc3339-validator==0.1.4
     # via
     #   jsonschema
@@ -461,6 +526,8 @@ rpds-py==0.30.0
     # via
     #   jsonschema
     #   referencing
+rsa==4.9.1
+    # via google-auth
 scikit-learn==1.7.2
     # via
     #   islp
@@ -482,9 +549,7 @@ setuptools==80.9.0
     # via jupyterlab
 six==1.17.0
     # via
-    #   databricks-cli
     #   python-dateutil
-    #   querystring-parser
     #   rfc3339-validator
 smmap==5.0.2
     # via gitdb
@@ -495,13 +560,13 @@ sqlalchemy==2.0.45
     #   alembic
     #   mlflow
 sqlparse==0.5.4
-    # via mlflow
+    # via mlflow-skinny
 stack-data==0.6.3
     # via ipython
+starlette==0.50.0
+    # via fastapi
 statsmodels==0.14.6
     # via islp
-tabulate==0.9.0
-    # via databricks-cli
 terminado==0.18.1
     # via
     #   jupyter-server
@@ -548,14 +613,28 @@ typing-extensions==4.15.0
     #   async-lru
     #   beautifulsoup4
     #   black
+    #   cryptography
     #   exceptiongroup
+    #   fastapi
     #   formulaic
+    #   graphene
     #   ipython
     #   mistune
+    #   mlflow-skinny
     #   mypy
+    #   opentelemetry-api
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+    #   pydantic
+    #   pydantic-core
     #   python-utils
     #   referencing
     #   sqlalchemy
+    #   starlette
+    #   typing-inspection
+    #   uvicorn
+typing-inspection==0.4.2
+    # via pydantic
 tzdata==2025.3
     # via
     #   arrow
@@ -564,9 +643,10 @@ uri-template==1.3.0
     # via jsonschema
 urllib3==2.6.2
     # via
-    #   databricks-cli
     #   docker
     #   requests
+uvicorn==0.38.0
+    # via mlflow-skinny
 waitress==2.1.2 ; sys_platform == 'win32'
     # via mlflow
 wcwidth==0.2.14
@@ -582,7 +662,9 @@ websocket-client==1.9.0
     #   docker
     #   jupyter-server
 werkzeug==3.1.4
-    # via flask
+    # via
+    #   flask
+    #   flask-cors
 widgetsnbextension==4.0.15
     # via ipywidgets
 wrapt==2.0.1
