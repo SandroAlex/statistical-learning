@@ -15,5 +15,5 @@ services:
       - ./islp:/statapp/islp
       - ./pyproject.toml:/statapp/pyproject.toml  # Mount project config
     ports:
-      - 8888:8888 # JupyterLab
-      - 5000:5000 # Mlflow user interface
+      - 8874:8874 # JupyterLab
+      - 5005:5005 # Mlflow user interface
