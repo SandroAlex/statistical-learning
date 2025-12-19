@@ -48,13 +48,6 @@ jupyter: # Run jupyterlab on statapp service
 	@printf "${BLUE}JupyterLab session ended inside docker container!${NC}\n" ;
 	@printf "\n" ;
 
-mlflow: # Run Mlflow Tracking User Interface on statapp service
-	@printf "\n" ;
-	@printf "${GREEN}Starting Mlflow Tracking User Interface ...${NC}\n" ;
-	@docker-compose exec statapp_service sh -c "uv run mlflow server --backend-store-uri ${MLFLOW_URI} --host 0.0.0.0 --port ${MLFLOW_PORT}" || true;
-	@printf "${BLUE}Mlflow Tracking User Interface stopped!${NC}\n" ;
-	@printf "\n" ;
-
 
 ##### Python dependencies management with uv #####
 requirements: # Create requirements.txt file
@@ -85,4 +78,13 @@ update: # Run all uv update commands
 	@$(MAKE) requirements ;
 	@$(MAKE) requirements-dev ;
 	@printf "${BLUE}uv.lock and requirements files updated successfully!${NC}\n" ;
+	@printf "\n" ;
+
+
+##### Mlflow #####
+mlflow: # Run Mlflow Tracking User Interface
+	@printf "\n" ;
+	@printf "${GREEN}Starting Mlflow Tracking User Interface ...${NC}\n" ;
+	@uv run mlflow server --backend-store-uri ${MLFLOW_URI} --host 0.0.0.0 --port ${MLFLOW_PORT};
+	@printf "${BLUE}Mlflow Tracking User Interface stopped!${NC}\n" ;
 	@printf "\n" ;
