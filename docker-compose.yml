@@ -11,9 +11,11 @@ services:
       dockerfile: Dockerfile
     command: sleep infinity
     volumes:
+      # Main application code
       - ./Makefile:/statapp/Makefile
-      - ./islp:/statapp/islp
-      - ./pyproject.toml:/statapp/pyproject.toml  # Mount project config
+      - ./pyproject.toml:/statapp/pyproject.toml
+      # Mlflow folder for experiment tracking
+      - ./mlflow:/statapp/mlflow
     ports:
       - 8874:8874 # JupyterLab
       - 5005:5005 # Mlflow user interface
