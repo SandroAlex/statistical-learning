@@ -18,7 +18,7 @@ from sklearn.metrics import accuracy_score
 # (1) tracking URI;
 # (2) experiment name;
 mlflow.set_tracking_uri("sqlite:////statapp/mlflow/database.db")
-mlflow.set_experiment("Sklearn Template Manual Logging Experiment")
+mlflow.set_experiment("Sklearn Manual Logging")
 
 # Load the Iris dataset
 X, y = datasets.load_iris(return_X_y=True)

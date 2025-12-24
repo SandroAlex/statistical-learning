@@ -19,7 +19,7 @@ from sklearn.linear_model import LogisticRegression
 # (2) experiment name;
 # (3) enable autologging for sklearn
 mlflow.set_tracking_uri("sqlite:////statapp/mlflow/database.db")
-mlflow.set_experiment("Sklearn Template Autologging Experiment")
+mlflow.set_experiment("Sklearn Autologging")
 mlflow.sklearn.autolog()
 
 # Prepare training data
