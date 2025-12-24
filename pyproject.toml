@@ -20,6 +20,9 @@ dependencies = [
     # Managing the Machine Learning Lifecycle
     "l0bnb>=1.0.0",
     "mlflow==3.7.0",
+    # Pytorch dependencies
+    "torch==2.9.1",
+    "torchvision==0.24.1",
     # Other tools
     "natsort==8.4.0",
 ]
@@ -33,6 +36,19 @@ dev = [
     "flake8>=6.0.0",
     "mypy>=1.0.0",
 ]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu" },
+]
+torchvision = [
+    { index = "pytorch-cpu" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 [tool.setuptools.packages.find]
 where = ["."]
