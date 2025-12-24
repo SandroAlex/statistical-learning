@@ -37,6 +37,10 @@ RUN apt-get update --yes && \
     # Operational system dependencies.
     apt-get install --yes --no-install-recommends \
         build-essential \
+        sudo \
+        vim \
+        vim-gtk3 \
+        git \
         python3-dev \
         python3-pip \
         python-is-python3 && \
