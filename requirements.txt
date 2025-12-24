@@ -2,7 +2,9 @@
 #    uv export --format requirements-txt --no-hashes
 -e .
 alembic==1.17.2
-    # via mlflow
+    # via
+    #   mlflow
+    #   optuna
 annotated-doc==0.0.4
     # via fastapi
 annotated-types==0.7.0
@@ -69,7 +71,11 @@ cloudpickle==3.1.2
 colorama==0.4.6 ; sys_platform == 'win32'
     # via
     #   click
+    #   colorlog
     #   ipython
+    #   tqdm
+colorlog==6.10.1
+    # via optuna
 comm==0.2.3
     # via
     #   ipykernel
@@ -324,6 +330,7 @@ numpy==2.2.6
     #   matplotlib
     #   mlflow
     #   numba
+    #   optuna
     #   pandas
     #   patsy
     #   pygam
@@ -347,6 +354,8 @@ opentelemetry-sdk==1.39.1
     #   mlflow-tracing
 opentelemetry-semantic-conventions==0.60b1
     # via opentelemetry-sdk
+optuna==4.6.0
+    # via statistical-learning
 overrides==7.7.0
     # via jupyter-server
 packaging==25.0
@@ -361,6 +370,7 @@ packaging==25.0
     #   mlflow-skinny
     #   mlflow-tracing
     #   nbconvert
+    #   optuna
     #   statsmodels
 pandas==2.3.3
     # via
@@ -397,7 +407,7 @@ protobuf==6.33.2
     #   mlflow-skinny
     #   mlflow-tracing
     #   opentelemetry-proto
-psutil==7.1.3
+psutil==7.2.0
     # via ipykernel
 ptyprocess==0.7.0 ; os_name != 'nt' or (sys_platform != 'emscripten' and sys_platform != 'win32')
     # via
@@ -457,6 +467,7 @@ pyyaml==6.0.3
     # via
     #   jupyter-events
     #   mlflow-skinny
+    #   optuna
 pyzmq==27.1.0
     # via
     #   ipykernel
@@ -521,6 +532,7 @@ sqlalchemy==2.0.45
     # via
     #   alembic
     #   mlflow
+    #   optuna
 sqlparse==0.5.5
     # via mlflow-skinny
 stack-data==0.6.3
@@ -563,6 +575,8 @@ tornado==6.5.4
     #   jupyterlab
     #   notebook
     #   terminado
+tqdm==4.67.1
+    # via optuna
 traitlets==5.14.3
     # via
     #   ipykernel

@@ -23,8 +23,9 @@ dependencies = [
     # Pytorch dependencies
     "torch==2.9.1",
     "torchvision==0.24.1",
-    # Other tools
+    # Optimization tools
     "natsort==8.4.0",
+    "optuna==4.6.0",
 ]
 
 [project.optional-dependencies]
