@@ -2603,12 +2603,18 @@ name = "statistical-learning"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "black" },
+    { name = "flake8" },
     { name = "islp" },
+    { name = "isort" },
     { name = "l0bnb" },
     { name = "lightgbm" },
     { name = "mlflow" },
+    { name = "mypy" },
     { name = "natsort" },
     { name = "optuna" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
     { name = "torch", version = "2.9.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin'" },
     { name = "torch", version = "2.9.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin'" },
     { name = "torchvision", version = "0.24.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or sys_platform == 'darwin'" },
@@ -2616,35 +2622,24 @@ dependencies = [
     { name = "xgboost" },
 ]
 
-[package.optional-dependencies]
-dev = [
-    { name = "black" },
-    { name = "flake8" },
-    { name = "isort" },
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-]
-
 [package.metadata]
 requires-dist = [
-    { name = "black", marker = "extra == 'dev'", specifier = ">=23.0.0" },
-    { name = "flake8", marker = "extra == 'dev'", specifier = ">=6.0.0" },
+    { name = "black", specifier = ">=23.0.0" },
+    { name = "flake8", specifier = ">=6.0.0" },
     { name = "islp", specifier = "==0.3.18" },
-    { name = "isort", marker = "extra == 'dev'", specifier = ">=5.12.0" },
+    { name = "isort", specifier = ">=5.12.0" },
     { name = "l0bnb", specifier = ">=1.0.0" },
     { name = "lightgbm", specifier = "==4.6.0" },
     { name = "mlflow", specifier = "==3.7.0" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0.0" },
+    { name = "mypy", specifier = ">=1.0.0" },
     { name = "natsort", specifier = "==8.4.0" },
     { name = "optuna", specifier = "==4.6.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
+    { name = "pytest", specifier = ">=7.0.0" },
+    { name = "pytest-cov", specifier = ">=4.0.0" },
     { name = "torch", specifier = "==2.9.1", index = "https://download.pytorch.org/whl/cpu" },
     { name = "torchvision", specifier = "==0.24.1", index = "https://download.pytorch.org/whl/cpu" },
     { name = "xgboost", specifier = "==3.1.2" },
 ]
-provides-extras = ["dev"]
 
 [[package]]
 name = "statsmodels"

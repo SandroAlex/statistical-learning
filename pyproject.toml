@@ -29,10 +29,7 @@ dependencies = [
     # Gradient boosting libraries
     "xgboost==3.1.2",
     "lightgbm==4.6.0",
-]
-
-[project.optional-dependencies]
-dev = [
+    # Development tools
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
     "black>=23.0.0",

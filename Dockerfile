@@ -70,8 +70,8 @@ ENV PATH="/home/${USER_NAME}/.local/bin:$PATH"
 # Switch to the worker user
 USER $USER_NAME
 
-# Install project in editable mode with dev depedencies creating a virtual environment
-RUN uv sync --extra dev 
+# Install project in editable mode creating a virtual environment
+RUN uv sync 
 
 # Use apt in interactive mode when we are actually using docker container
 ENV DEBIAN_FRONTEND=dialog

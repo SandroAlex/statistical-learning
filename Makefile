@@ -1,10 +1,18 @@
+# Makefile for managing Docker services, Python dependencies, and Mlflow
+.PHONY: build up down debug jupyter requirements requirements-dev lock update mlflow-ui mlflow-clean
+
+# Suppress make's default output
+MAKEFLAGS += --no-print-directory
+
 # Colorful output in terminal
 GREEN=\033[0;32m
 BLUE=\033[0;34m
+YELLOW=\033[0;33m
+RED=\033[0;31m
 NC=\033[0;0m # No Color
 
 # Mlflow configuration
-MLFLOW_URI=sqlite:////statapp/mlflow.db
+MLFLOW_URI=sqlite:////statapp/mlflow/database.db
 MLFLOW_PORT=5005
 
 # Jupyterlab configuration
@@ -15,7 +23,7 @@ JUPYTER_PORT=8874
 build: # Build docker image for all services
 	@printf "\n" ;
 	@printf "${GREEN}Building services ...${NC}\n" ;
-	@docker-compose up --build --detach ;
+	@docker-compose build ;
 	@printf "${BLUE}Docker images built successfully!${NC}\n" ;
 	@printf "\n" ; 
 
@@ -57,13 +65,6 @@ requirements: # Create requirements.txt file
 	@printf "${BLUE}requirements.txt file generated successfully!${NC}\n" ;
 	@printf "\n" ;
 
-requirements-dev: # Create requirements.txt file including dev dependencies
-	@printf "\n" ;
-	@printf "${GREEN}Generating requirements.txt file including dev dependencies ...${NC}\n" ;
-	@uv export --format requirements-txt --extra dev --no-hashes > requirements.dev.txt ;
-	@printf "${BLUE}requirements.dev.txt file generated successfully!${NC}\n" ;
-	@printf "\n" ;
-
 lock: # Create / update uv.lock file
 	@printf "\n" ;
 	@printf "${GREEN}Updating uv.lock file ...${NC}\n" ;
@@ -73,18 +74,25 @@ lock: # Create / update uv.lock file
 
 update: # Run all uv update commands
 	@printf "\n" ;
-	@printf "${GREEN}Updating uv.lock and requirements files ...${NC}\n" ;
+	@printf "${GREEN}Updating uv.lock and requirement files ...${NC}\n" ;
 	@$(MAKE) lock ;
 	@$(MAKE) requirements ;
-	@$(MAKE) requirements-dev ;
-	@printf "${BLUE}uv.lock and requirements files updated successfully!${NC}\n" ;
+	@printf "${BLUE}uv.lock and requirement files updated successfully!${NC}\n" ;
 	@printf "\n" ;
 
 
 ##### Mlflow #####
-mlflow: # Run Mlflow Tracking User Interface
+mlflow-ui: # Run Mlflow Tracking User Interface
 	@printf "\n" ;
 	@printf "${GREEN}Starting Mlflow Tracking User Interface ...${NC}\n" ;
 	@uv run mlflow server --backend-store-uri ${MLFLOW_URI} --host 0.0.0.0 --port ${MLFLOW_PORT};
 	@printf "${BLUE}Mlflow Tracking User Interface stopped!${NC}\n" ;
+	@printf "\n" ;
+
+mlflow-clean: # Cleanup Mlflow database and artifacts
+	@printf "\n" ;
+	@printf "${RED}Cleaning up Mlflow database and runs ...${NC}\n" ;
+	@rm -f /statapp/mlflow/database.db ;
+	@rm -rf /statapp/mlflow/mlruns ;
+	@printf "${BLUE}Mlflow database and runs cleaned up successfully!${NC}\n" ;
 	@printf "\n" ;

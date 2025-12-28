@@ -13,9 +13,12 @@ services:
     volumes:
       # Main application code
       - ./Makefile:/statapp/Makefile
-      - ./pyproject.toml:/statapp/pyproject.toml
       # Mlflow folder for experiment tracking
       - ./mlflow:/statapp/mlflow
+      # Python dependencies
+      - ./pyproject.toml:/statapp/pyproject.toml
+      - ./requirements.txt:/statapp/requirements.txt
+      - ./uv.lock:/statapp/uv.lock
     ports:
       - 8874:8874 # JupyterLab
       - 5005:5005 # Mlflow user interface
