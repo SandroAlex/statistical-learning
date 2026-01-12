@@ -38,6 +38,8 @@ dependencies = [
     "mypy>=1.0.0",
     # Pytorch Lightning for high-level interface in neural networks
     "lightning==2.6.0",
+    # Visualization of training metrics
+    "tensorboard==2.20.0",
 ]
 
 [tool.uv.sources]
