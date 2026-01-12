@@ -1,5 +1,8 @@
 # Makefile for managing Docker services, Python dependencies, and Mlflow
-.PHONY: help build up down debug jupyter requirements requirements-dev lock update mlflow-ui mlflow-clean
+.PHONY: help 
+.PHONY: build up down debug jupyter 
+.PHONY: requirements requirements-dev lock update 
+.PHONY: mlflow-ui mlflow-clean
 
 # Suppress make's default output
 MAKEFLAGS += --no-print-directory
