@@ -36,6 +36,8 @@ dependencies = [
     "isort>=5.12.0",
     "flake8>=6.0.0",
     "mypy>=1.0.0",
+    # Pytorch Lightning for high-level interface in neural networks
+    "lightning==2.6.0",
 ]
 
 [tool.uv.sources]
