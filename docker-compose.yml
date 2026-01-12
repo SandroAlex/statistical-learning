@@ -11,14 +11,8 @@ services:
       dockerfile: Dockerfile
     command: sleep infinity
     volumes:
-      # Main application code
-      - ./Makefile:/statapp/Makefile
-      # Mlflow folder for experiment tracking
-      - ./mlflow:/statapp/mlflow
-      # Python dependencies
-      - ./pyproject.toml:/statapp/pyproject.toml
-      - ./requirements.txt:/statapp/requirements.txt
-      - ./uv.lock:/statapp/uv.lock
+      # Copy all files from the current directory to working folder inside the container
+      - ./:/statapp
     ports:
       - 8874:8874 # JupyterLab
       - 5005:5005 # Mlflow user interface
