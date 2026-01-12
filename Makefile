@@ -1,5 +1,5 @@
 # Makefile for managing Docker services, Python dependencies, and Mlflow
-.PHONY: build up down debug jupyter requirements requirements-dev lock update mlflow-ui mlflow-clean
+.PHONY: help build up down debug jupyter requirements requirements-dev lock update mlflow-ui mlflow-clean
 
 # Suppress make's default output
 MAKEFLAGS += --no-print-directory
@@ -17,6 +17,22 @@ MLFLOW_PORT=5005
 
 # Jupyterlab configuration
 JUPYTER_PORT=8874
+
+##### Help message #####
+help: # Show this help message
+	@printf "\n" ;
+	@printf "${GREEN}Available make commands:${NC}\n" ;
+	@printf "${YELLOW}  build${NC}           - Build docker image for all services\n" ;
+	@printf "${YELLOW}  up${NC}              - Start all docker services\n" ;
+	@printf "${YELLOW}  down${NC}            - Stop all docker services\n" ;
+	@printf "${YELLOW}  debug${NC}           - Run a bash terminal inside a docker container\n" ;
+	@printf "${YELLOW}  jupyter${NC}         - Run jupyterlab on statapp service\n" ;
+	@printf "${YELLOW}  requirements${NC}    - Create requirements.txt file\n" ;
+	@printf "${YELLOW}  lock${NC}            - Create / update uv.lock file\n" ;
+	@printf "${YELLOW}  update${NC}          - Run all uv update commands\n" ;
+	@printf "${YELLOW}  mlflow-ui${NC}       - Run Mlflow Tracking User Interface\n" ;
+	@printf "${YELLOW}  mlflow-clean${NC}    - Cleanup Mlflow database and artifacts\n" ;
+	@printf "\n" ;	
 
 
 ##### Docker commands #####
