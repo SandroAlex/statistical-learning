@@ -2883,7 +2883,7 @@ requires-dist = [
     { name = "optuna", specifier = "==4.6.0" },
     { name = "pytest", specifier = ">=7.0.0" },
     { name = "pytest-cov", specifier = ">=4.0.0" },
-    { name = "tensorboard", specifier = ">=2.20.0" },
+    { name = "tensorboard", specifier = "==2.20.0" },
     { name = "torch", specifier = "==2.9.1", index = "https://download.pytorch.org/whl/cpu" },
     { name = "torchvision", specifier = "==0.24.1", index = "https://download.pytorch.org/whl/cpu" },
     { name = "xgboost", specifier = "==3.1.2" },
